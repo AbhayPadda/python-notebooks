@@ -1,2 +1,2 @@
 # python-notebooks
-Repository with python notebooks that I created while practicing/learning some of the basic topics in data science
+Repository with python notebooks and data files for different practice problems.
