@@ -78,7 +78,7 @@ def preprocess(text):
 
 # #### Pre-process data
 
-# In[9]:
+# In[8]:
 
 
 processed_docs = []
@@ -89,7 +89,7 @@ for doc in newsgroups_train.data:
 
 # #### Creating Bag of Words from the processed data
 
-# In[10]:
+# In[9]:
 
 
 dictionary = gensim.corpora.Dictionary(processed_docs)
@@ -97,13 +97,13 @@ dictionary = gensim.corpora.Dictionary(processed_docs)
 
 # #### Filter extreme cases. Words with frequency less than 10 and words appearing in more than 20% of the documents
 
-# In[11]:
+# In[10]:
 
 
 dictionary.filter_extremes(no_below=10,no_above=0.2,keep_n= 100000)
 
 
-# In[12]:
+# In[11]:
 
 
 bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
@@ -111,7 +111,7 @@ bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
 
 # ### Running LDA on Bag of Words
 
-# In[13]:
+# In[12]:
 
 
 ## Creating 8 topics from the dictionary created and bow corpus
@@ -124,7 +124,7 @@ lda_model =  gensim.models.LdaMulticore(bow_corpus,
 
 # #### Check words occuring for each topic
 
-# In[14]:
+# In[13]:
 
 
 for idx, topic in lda_model.print_topics(-1):
@@ -146,14 +146,14 @@ for idx, topic in lda_model.print_topics(-1):
 
 # ### Testing Model
 
-# In[15]:
+# In[14]:
 
 
 test_doc = newsgroups_test.data[10]
 test_doc
 
 
-# In[16]:
+# In[15]:
 
 
 ## Pre-processing test document
@@ -163,8 +163,40 @@ for index, score in sorted(lda_model[bow_vector], key=lambda tup: -1*tup[1]):
     print("Score: {}\t Topic: {}".format(score, lda_model.print_topic(index, 5)))
 
 
-# In[17]:
+# In[16]:
 
 
 newsgroups_test.target[10]
+
+
+# ## Visualizing LDA model
+
+# In[17]:
+
+
+#!pip install pyLDAvis
+
+
+# In[18]:
+
+
+import pyLDAvis.gensim
+
+
+# In[19]:
+
+
+lda_display = pyLDAvis.gensim.prepare(lda_model, bow_corpus, dictionary, sort_topics=False)
+
+
+# Saliency: tells how much the term tells about the topic.
+# 
+# Relevance: a weighted average of the probability of the word given the topic and the word given the topic normalized by the probability of the topic.
+# 
+# The size of the bubble measures the importance of the topics, relative to the data.
+
+# In[20]:
+
+
+pyLDAvis.display(lda_display)
 
