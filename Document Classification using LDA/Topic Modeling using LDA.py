@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # ## Topic Modeling using LDA
@@ -167,6 +166,7 @@ for index, score in sorted(lda_model[bow_vector], key=lambda tup: -1*tup[1]):
 
 
 newsgroups_test.target[10]
+<<<<<<< HEAD
 
 
 # ## Visualizing LDA model
@@ -200,3 +200,5 @@ lda_display = pyLDAvis.gensim.prepare(lda_model, bow_corpus, dictionary, sort_to
 
 pyLDAvis.display(lda_display)
 
+=======
+>>>>>>> 6fb2f6388e9ae9c5a15cdec137c9b1daa4cdfc13
