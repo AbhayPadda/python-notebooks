@@ -1,1 +1,1 @@
-Jupyter notebook for Topic modeling using LDA. Basics of topic modeling and how LDA works is explained in my blog here: https://analyticsdefined.com/introduction-to-topic-modeling-using-lda-latent-dirichlet-allocation/
+Jupyter notebook with the code for Topic modeling using LDA in Python. Basics of topic modeling and how LDA works is explained in my blog here: https://analyticsdefined.com/introduction-to-topic-modeling-using-lda-latent-dirichlet-allocation/
